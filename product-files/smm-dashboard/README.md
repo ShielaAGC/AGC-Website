@@ -27,6 +27,18 @@ Keep this folder out of any public deploy: it's the paid deliverable. The landin
 
 ## Put the landing page on WordPress
 
+### Option A: theme template file (recommended)
+
+`products/smm-dashboard/page-smm-dashboard.php` is a page template that uses your theme's header and footer.
+
+1. Open `page-smm-dashboard.php` and paste your checkout link into `define( 'SMM_CHECKOUT_URL', '' );`.
+2. Upload it to your theme folder, `wp-content/themes/<your-theme>/`, using your host's File Manager, FTP, or **Appearance → Theme File Editor**. Use a child theme if you have one, or a theme update will delete the file.
+3. Create a page titled "SMM Dashboard" with the slug `smm-dashboard` and publish it. WordPress uses the template automatically because of the slug. You can also pick "SMM Dashboard Landing Page" from the page's **Template** dropdown.
+
+Block themes (Twenty Twenty-Four, Twenty Twenty-Five, etc.) ignore PHP page templates, so on those use Option B.
+
+### Option B: Custom HTML block
+
 `products/smm-dashboard/wordpress-block.html` is the landing page as one snippet for a **Custom HTML** block. Its styles are scoped so they won't clash with your theme, and it has no header of its own because your theme supplies one.
 
 1. In WordPress go to **Pages → Add New**. Title it "SMM Dashboard" and set the URL slug to `smm-dashboard`.
@@ -39,4 +51,4 @@ Keep this folder out of any public deploy: it's the paid deliverable. The landin
 Notes:
 - You need an Administrator account. WordPress strips the `<script>` part for other roles, which stops the buy buttons from linking to checkout.
 - If you use Elementor, add an **HTML** widget to a page set to "Elementor Full Width" or "Elementor Canvas" and paste the snippet there instead.
-- After editing `index.html`, run `python3 build-wordpress.py` in `products/smm-dashboard/` to regenerate the snippet.
+- After editing `index.html`, run `python3 build-wordpress.py` in `products/smm-dashboard/` to regenerate both the snippet and the PHP template.
