@@ -1,6 +1,6 @@
 # SMM Dashboard: product files
 
-What buyers receive after purchasing the $149 template.
+What buyers receive after purchasing the ₱149 template.
 
 | File | What it is |
 | --- | --- |
@@ -20,7 +20,7 @@ TEMPLATE_URL="https://<your-published-notion-template-link>" node build-pdf.mjs
 ## Delivery checklist
 
 1. In Notion, open **✨ SMM Dashboard** → Share → Publish → turn on **Allow duplicate as template**. Copy the link.
-2. In your checkout tool (Stripe, Gumroad, Lemon Squeezy…), create a $149 product. Attach `how-to-use.pdf` and put the Notion template link in the delivery email.
+2. In your checkout tool (Stripe, Gumroad, Lemon Squeezy…), create a ₱149 product. Attach `how-to-use.pdf` and put the Notion template link in the delivery email.
 3. Paste the checkout link into `CHECKOUT_URL` in `products/smm-dashboard/index.html`.
 
 Keep this folder out of any public deploy: it's the paid deliverable. The landing page lives in `products/smm-dashboard/`.
