@@ -24,3 +24,19 @@ TEMPLATE_URL="https://<your-published-notion-template-link>" node build-pdf.mjs
 3. Paste the checkout link into `CHECKOUT_URL` in `products/smm-dashboard/index.html`.
 
 Keep this folder out of any public deploy: it's the paid deliverable. The landing page lives in `products/smm-dashboard/`.
+
+## Put the landing page on WordPress
+
+`products/smm-dashboard/wordpress-block.html` is the landing page as one snippet for a **Custom HTML** block. Its styles are scoped so they won't clash with your theme, and it has no header of its own because your theme supplies one.
+
+1. In WordPress go to **Pages → Add New**. Title it "SMM Dashboard" and set the URL slug to `smm-dashboard`.
+2. In the page settings sidebar, set **Template** to a full-width or blank option (often called "Full Width", "No Sidebar", "Blank" or "Canvas"). Hide the page title if your theme allows it.
+3. Click **+** → search **Custom HTML** → add the block.
+4. Open `wordpress-block.html`, copy everything, and paste it into the block.
+5. Paste your checkout link between the quotes in `const CHECKOUT_URL = "";` near the bottom of the snippet.
+6. Click **Preview**, then **Publish**. The page will be at `yoursite.com/smm-dashboard/`.
+
+Notes:
+- You need an Administrator account. WordPress strips the `<script>` part for other roles, which stops the buy buttons from linking to checkout.
+- If you use Elementor, add an **HTML** widget to a page set to "Elementor Full Width" or "Elementor Canvas" and paste the snippet there instead.
+- After editing `index.html`, run `python3 build-wordpress.py` in `products/smm-dashboard/` to regenerate the snippet.
