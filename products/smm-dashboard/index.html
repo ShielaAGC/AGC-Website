@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Social Media Command Center · Notion Template · Anchor Growth Co.</title>
-<meta name="description" content="Plan, write, design, schedule and track every post from one Notion dashboard. Includes a content calendar, idea bank, campaign planner, performance tracker, brand hub, content playbook and a step-by-step PDF guide. $149, one-time.">
+<title>SMM Dashboard · Notion Template · Anchor Growth Co.</title>
+<meta name="description" content="Plan, write, design, schedule and track every post from one Notion dashboard. Includes a content calendar with status board, graphics previews, brand hub, hook and caption bank, monthly tracker and a step-by-step PDF guide. $149, one-time.">
 <meta property="og:type" content="product">
-<meta property="og:title" content="Social Media Command Center: the Notion dashboard for running social">
+<meta property="og:title" content="SMM Dashboard: the Notion dashboard for running social media">
 <meta property="og:description" content="Plan, create, publish and track every post in one place. Notion template + how-to PDF guide. $149 one-time.">
 <meta name="theme-color" content="#C2456A">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>">
@@ -16,7 +16,7 @@
 {
   "@context": "https://schema.org",
   "@type": "Product",
-  "name": "Social Media Command Center (Notion Template)",
+  "name": "SMM Dashboard (Notion Template)",
   "description": "A Notion dashboard for planning, creating, publishing and tracking social media content, with a how-to PDF guide.",
   "brand": { "@type": "Brand", "name": "Anchor Growth Co." },
   "offers": { "@type": "Offer", "price": "149.00", "priceCurrency": "USD", "availability": "https://schema.org/InStock" }
@@ -121,6 +121,10 @@
   .side div { padding: 5px 8px; border-radius: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .side .on { background: var(--blush-soft); color: var(--ink); font-weight: 600; }
   .side .lbl { font-size: 11px; font-weight: 600; color: var(--ink-faint); text-transform: uppercase; letter-spacing: .08em; margin: 12px 0 4px; }
+  .thumbs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; padding: 4px 8px 6px; }
+  .thumbs span { aspect-ratio: 4 / 5; border-radius: 4px; background: linear-gradient(160deg, var(--blush), #EADFF7); }
+  .thumbs span:nth-child(2n) { background: linear-gradient(160deg, #FCE5D3, var(--blush)); }
+  .thumbs span:nth-child(3n) { background: linear-gradient(160deg, #E7EEF9, var(--blush-soft)); }
   .main { padding: 22px 26px; min-width: 0; }
   .page-title { font-family: "Fraunces", Georgia, serif; font-size: 26px; font-weight: 700; margin-bottom: 12px; }
   .tabs { display: flex; gap: 4px; font-size: 13px; border-bottom: 1px solid var(--line); margin-bottom: 14px; overflow: hidden; }
@@ -343,46 +347,44 @@
       </div>
     </div>
 
-    <div class="window" role="img" aria-label="Preview of the Social Media Command Center in Notion, showing a content pipeline board with posts grouped by status">
-      <div class="window-bar"><i></i><i></i><i></i><span class="crumb">✨ Social Media Command Center</span></div>
+    <div class="window" role="img" aria-label="Preview of the SMM Dashboard in Notion, showing upcoming events, a graphics preview and the content calendar status board">
+      <div class="window-bar"><i></i><i></i><i></i><span class="crumb">✨ SMM Dashboard</span></div>
       <div class="window-body">
         <div class="side">
-          <div class="on">✨ Command Center</div>
-          <div>🚀 Start Here</div>
-          <div>🎨 Brand Hub</div>
-          <div>📚 Content Playbook</div>
-          <div class="lbl">Databases</div>
-          <div>📅 Content Calendar</div>
-          <div>💡 Idea Bank</div>
-          <div>🎯 Campaigns</div>
-          <div>📊 Monthly Performance</div>
-          <div>🧰 Tool Stack</div>
+          <div class="lbl" style="margin-top:0">📌 Upcoming events</div>
+          <div>· [Holiday] (Oct 31)</div>
+          <div>· 11.11 sale (Nov 11)</div>
+          <div>· [Your launch] (Dec 1)</div>
+          <div class="lbl">🖼️ IG/FB Graphics Preview</div>
+          <div class="thumbs"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          <div class="lbl">📌 Content needed</div>
+          <div>☐ W3 Tue photo</div>
+          <div>☐ B-roll: desk + coffee</div>
         </div>
         <div class="main">
           <div class="page-title">📅 Content Calendar</div>
-          <div class="tabs"><span>All Posts</span><span class="on">Pipeline</span><span>Calendar</span><span>Needs Attention</span><span>Results</span><span>Pillar Mix</span></div>
+          <div class="tabs"><span>Default view</span><span>Calendar</span><span class="on">Status board</span></div>
           <div class="board">
             <div class="col">
-              <h4><span class="pill p-yellow">✍️ Drafting</span><b>2</b></h4>
-              <div class="card">11.11 teaser<div class="date">Nov 4</div><div class="meta"><span class="pill p-blue">Recommend</span></div></div>
-              <div class="card">Myth vs fact about my industry<div class="date">Nov 6</div><div class="meta"><span class="pill p-pink">Educate</span></div></div>
+              <h4><span class="pill p-blue">Not started</span><b>2</b></h4>
+              <div class="card">W4 Tue: [Holiday]-themed post<div class="date">Oct 27</div><div class="meta"><span class="pill p-green">Engage</span></div></div>
+              <div class="card">W4 Fri: [Your offer] is open<div class="date">Oct 30</div><div class="meta"><span class="pill p-blue">Recommend</span></div></div>
             </div>
             <div class="col">
-              <h4><span class="pill p-orange">🎨 Designing</span><b>1</b></h4>
-              <div class="card">What a day running my business looks like<div class="date">Oct 13</div><div class="meta"><span class="pill p-orange">Behind the Scenes</span></div></div>
+              <h4><span class="pill p-yellow">Copy drafted</span><b>1</b></h4>
+              <div class="card">W3 Fri: Before and after results<div class="date">Oct 23</div><div class="meta"><span class="pill p-purple">Show How</span></div></div>
             </div>
             <div class="col">
-              <h4><span class="pill p-red">📸 Needs assets</span><b>1</b></h4>
-              <div class="card">Spooky marketing mistakes 🎃<div class="date">Oct 30</div><div class="meta"><span class="pill p-green">Engage</span></div></div>
+              <h4><span class="pill p-orange">Needs photo</span><b>1</b></h4>
+              <div class="card">W3 Tue: 5 free tools I use every week<div class="date">Oct 20</div><div class="meta"><span class="pill p-blue">Recommend</span></div></div>
             </div>
             <div class="col">
-              <h4><span class="pill p-brown">⏰ Scheduled</span><b>2</b></h4>
-              <div class="card">How I batch a week of content in 2 hours<div class="date">Oct 9</div><div class="meta"><span class="pill p-purple">Show How</span></div></div>
-              <div class="card">3 free tools I use every week<div class="date">Oct 20</div><div class="meta"><span class="pill p-blue">Recommend</span></div></div>
+              <h4><span class="pill p-gray">Scheduled</span><b>1</b></h4>
+              <div class="card">W1 Fri: How I plan a week of content in 1 hour<div class="date">Oct 9</div><div class="meta"><span class="pill p-purple">Show How</span></div></div>
             </div>
             <div class="col">
-              <h4><span class="pill p-green">🚀 Published</span><b>1</b></h4>
-              <div class="card">5 mistakes keeping your posts from getting saves<div class="date">Oct 6</div><div class="meta"><span class="pill p-pink">Educate</span><span class="pill p-green">14.3% ER</span></div></div>
+              <h4><span class="pill p-green">Published</span><b>1</b></h4>
+              <div class="card">W1 Tue: 5 mistakes keeping your posts from getting saves<div class="date">Oct 6</div><div class="meta"><span class="pill p-pink">Educate</span><span class="pill p-pink">Carousel</span></div></div>
             </div>
           </div>
         </div>
@@ -401,7 +403,7 @@
       <div><b>🗓️</b>Schedule<small>in your head</small></div>
       <div><b>📉</b>Results<small>nowhere at all</small></div>
     </div>
-    <p class="turn">The Command Center puts all of it in <strong>one place</strong>, and gives you a weekly routine to run it.</p>
+    <p class="turn">The SMM Dashboard puts all of it on <strong>one Notion page</strong>, and gives you a weekly routine to run it.</p>
   </div>
 </section>
 
@@ -410,44 +412,44 @@
     <div class="section-head">
       <div class="eyebrow">What's inside</div>
       <h2>Everything you need to plan, create and grow</h2>
-      <p>Five connected databases and three guide pages, pre-filled with examples so you can see exactly how it works.</p>
+      <p>One dashboard page with everything laid out, pre-filled with example posts so you can see exactly how it works.</p>
     </div>
     <div class="grid-3">
       <div class="feature">
         <span class="ic">📅</span>
         <h3>Content Calendar</h3>
-        <p>Every post with its hook, copy, caption, CTA, hashtags, design link, schedule and results.</p>
-        <ul><li>Pipeline board with 8 statuses</li><li>Calendar, Results and Needs Attention views</li><li>Auto-calculated engagement rate</li></ul>
+        <p>Every post with its hook, slide copy, captions, hashtags, CTA, Canva links and graphics.</p>
+        <ul><li>Status board with 7 stages</li><li>Calendar and full table views</li><li>Separate IG/FB and TikTok captions</li></ul>
       </div>
       <div class="feature">
-        <span class="ic">💡</span>
-        <h3>Idea Bank</h3>
-        <p>Capture ideas the second they show up, then shortlist the best ones every Monday.</p>
-        <ul><li>Tag by pillar, source and format</li><li>Priority and status board</li><li>Never stare at a blank page again</li></ul>
+        <span class="ic">🖼️</span>
+        <h3>Graphics previews</h3>
+        <p>See all your feed and TikTok graphics side by side before anything goes live.</p>
+        <ul><li>IG/FB graphics gallery</li><li>TikTok graphics gallery</li><li>Spot an off-brand post instantly</li></ul>
       </div>
       <div class="feature">
-        <span class="ic">🎯</span>
-        <h3>Campaigns & Key Dates</h3>
-        <p>Holidays, sales and launches on a timeline, with every supporting post linked.</p>
-        <ul><li>Halloween, 11.11, BFCM and 12.12 pre-loaded</li><li>Goal and offer for each campaign</li><li>Timeline view</li></ul>
-      </div>
-      <div class="feature">
-        <span class="ic">📊</span>
-        <h3>Monthly Performance</h3>
-        <p>One row per month, with engagement rate worked out for you and a built-in review.</p>
-        <ul><li>Reach, saves, shares, followers, leads</li><li>Link your top post of the month</li><li>5 month-end review questions</li></ul>
+        <span class="ic">📌</span>
+        <h3>Events & shot list</h3>
+        <p>Know what's coming up and what you still need to shoot.</p>
+        <ul><li>Upcoming events with key-date ideas</li><li>Photo and Reel checklist</li><li>Ready-made B-roll list</li></ul>
       </div>
       <div class="feature">
         <span class="ic">🎨</span>
-        <h3>Brand Hub</h3>
-        <p>Positioning, voice, colors, fonts, asset links and content pillars on one page you can share.</p>
-        <ul><li>Fill-in-the-blank brand guide</li><li>5 content pillars with target %</li><li>Share it with a designer or VA</li></ul>
+        <h3>Brand Hub & Pillars</h3>
+        <p>Positioning, audience, voice, colors, fonts and Canva links, all on the same page.</p>
+        <ul><li>Fill-in-the-blank brand guide</li><li>5 content pillars with target %</li><li>Hashtag sets and CTA bank</li></ul>
       </div>
       <div class="feature">
-        <span class="ic">📚</span>
-        <h3>Content Playbook</h3>
-        <p>Everything you need to write a post fast, in one scrollable page.</p>
-        <ul><li>20 hook formulas, caption template</li><li>CTA bank and hashtag sets</li><li>Repurposing workflow, QA checklist, benchmarks</li></ul>
+        <span class="ic">✍️</span>
+        <h3>Hook & Caption Bank</h3>
+        <p>Everything you need to write a post fast.</p>
+        <ul><li>15 fill-in-the-blank hook formulas</li><li>Caption structure + copy-paste template</li><li>Platform size cheat sheet</li></ul>
+      </div>
+      <div class="feature">
+        <span class="ic">📊</span>
+        <h3>Track & improve</h3>
+        <p>Simple monthly tracking, plus the workflows that keep quality high.</p>
+        <ul><li>Monthly performance tracker</li><li>5 review questions and benchmarks</li><li>Repurposing workflow and QA checklist</li></ul>
       </div>
     </div>
   </div>
@@ -459,34 +461,33 @@
     <div class="dive">
       <div class="dive-copy">
         <div class="eyebrow">See every post at a glance</div>
-        <h3>A pipeline that shows you what's next</h3>
-        <p>Every post moves left to right, from idea to published. You always know what's drafted, what's blocked, and what's going live this week.</p>
+        <h3>A status board that shows you what's next</h3>
+        <p>Every post moves from idea to published. You always know what's drafted, what's waiting on a photo, and what's going live this week.</p>
         <ul class="checks">
-          <li>Drag cards across 8 clear statuses</li>
-          <li>Blocked posts surface automatically in <em>Needs Attention</em></li>
-          <li>Filter by pillar or platform in one click</li>
-          <li>Built for Instagram, TikTok, Facebook, LinkedIn, YouTube, Threads, Pinterest and X</li>
+          <li>Drag cards across 7 clear stages</li>
+          <li>Plan by week, pillar and topic type</li>
+          <li>Canva links for both feed and TikTok versions</li>
+          <li>Built for Instagram, Facebook and TikTok, and easy to add more</li>
         </ul>
       </div>
       <div class="panel" aria-hidden="true">
-        <div class="panel-title"><span>Status flow</span><span>8 stages</span></div>
+        <div class="panel-title"><span>Status board</span><span>7 stages</span></div>
         <div class="flow">
-          <span class="pill p-gray">💡 Idea</span><span class="arrow">→</span>
-          <span class="pill p-yellow">✍️ Drafting</span><span class="arrow">→</span>
-          <span class="pill p-orange">🎨 Designing</span><span class="arrow">→</span>
-          <span class="pill p-red">📸 Needs assets</span><span class="arrow">→</span>
-          <span class="pill p-purple">👀 In review</span><span class="arrow">→</span>
-          <span class="pill p-blue">✅ Ready</span><span class="arrow">→</span>
-          <span class="pill p-brown">⏰ Scheduled</span><span class="arrow">→</span>
-          <span class="pill p-green">🚀 Published</span>
+          <span class="pill p-blue">Not started</span><span class="arrow">→</span>
+          <span class="pill p-yellow">Copy drafted</span><span class="arrow">→</span>
+          <span class="pill p-brown">Designed</span><span class="arrow">→</span>
+          <span class="pill p-orange">Needs photo</span><span class="arrow">→</span>
+          <span class="pill p-purple">Ready to post</span><span class="arrow">→</span>
+          <span class="pill p-gray">Scheduled</span><span class="arrow">→</span>
+          <span class="pill p-green">Published</span>
         </div>
         <div class="post-open">
           <div class="prop"><span>Hook</span><span>You're getting likes but zero saves. Here's why.</span></div>
           <div class="prop"><span>Pillar</span><span><span class="pill p-pink">Educate</span></span></div>
-          <div class="prop"><span>Format</span><span><span class="pill p-pink">Carousel</span></span></div>
+          <div class="prop"><span>Topic Type</span><span><span class="pill p-orange">Mistakes to Avoid</span></span></div>
+          <div class="prop"><span>Content Type</span><span><span class="pill p-pink">Carousel</span></span></div>
           <div class="prop"><span>Platforms</span><span><span class="pill p-pink">Instagram</span> <span class="pill p-blue">Facebook</span> <span class="pill p-gray">TikTok</span></span></div>
-          <div class="prop"><span>CTA</span><span>Save this for your next content day</span></div>
-          <div class="prop"><span>QA Passed</span><span>☑︎</span></div>
+          <div class="prop"><span>CTA</span><span>Save this + follow for more</span></div>
         </div>
       </div>
     </div>
@@ -495,29 +496,23 @@
       <div class="dive-copy">
         <div class="eyebrow">Write faster</div>
         <h3>Never start from a blank caption again</h3>
-        <p>The Content Playbook sits next to your calendar with proven formulas for every part of a post. Pick a hook, follow the caption structure, choose one CTA, paste your hashtags. Done.</p>
+        <p>The Hook & Caption Bank sits right on the dashboard with formulas for every part of a post. Pick a hook, follow the caption structure, choose one CTA, paste your hashtags. Done.</p>
         <ul class="checks">
-          <li>20 hook formulas in 5 categories</li>
+          <li>15 hook formulas to fill in</li>
           <li>6-part caption structure with a copy-paste template</li>
           <li>CTA bank for reach, saves, comments and sales</li>
-          <li>11-point pre-publish QA checklist</li>
+          <li>12-point pre-publish QA checklist</li>
         </ul>
       </div>
       <div class="panel" aria-hidden="true">
-        <div class="panel-title"><span>📚 Content Playbook · Hook bank</span></div>
-        <div class="hook-group">Mistakes & warnings</div>
+        <div class="panel-title"><span>✍️ Hook & Caption Bank · Hook formulas</span></div>
         <ul class="hooks">
           <li>The <b>[number]</b> mistakes keeping you from <b>[result]</b></li>
           <li>Stop doing <b>[common thing]</b>. Do this instead.</li>
-        </ul>
-        <div class="hook-group">Results & proof</div>
-        <ul class="hooks">
           <li>I tried <b>[thing]</b> for <b>[time period]</b>. Here's what happened.</li>
           <li><b>[Result]</b> in <b>[timeframe]</b>, without <b>[common objection]</b></li>
-        </ul>
-        <div class="hook-group">Curiosity</div>
-        <ul class="hooks">
           <li>Nobody talks about this part of <b>[topic]</b></li>
+          <li>POV: you just <b>[relatable moment]</b></li>
         </ul>
       </div>
     </div>
@@ -526,35 +521,30 @@
       <div class="dive-copy">
         <div class="eyebrow">Grow on purpose</div>
         <h3>Know exactly what to make more of</h3>
-        <p>Log a few numbers a week and the dashboard does the math. See your best posts, check your content balance, and run a 30-minute review at the end of each month.</p>
+        <p>Fill in one row at the end of each month, answer five questions, and you'll know what to keep, what to drop and what to try next.</p>
         <ul class="checks">
-          <li>Engagement rate calculated for every post</li>
-          <li>Results view sorted by your top performers</li>
-          <li>Pillar Mix chart shows if your feed is balanced</li>
+          <li>Track reach, engagement, saves, shares, followers and leads</li>
+          <li>Note your top post every month</li>
+          <li>5 month-end review questions</li>
           <li>Benchmarks so you know what "good" looks like</li>
         </ul>
       </div>
       <div class="panel" aria-hidden="true">
-        <div class="panel-title"><span>Results view</span><span>Sample data</span></div>
+        <div class="panel-title"><span>📊 Monthly Performance Tracker</span><span>Sample data</span></div>
         <div class="results-wrap">
           <table class="results">
-            <thead><tr><th>Post</th><th>Reach</th><th>Saves</th><th>Shares</th><th>Eng. rate</th></tr></thead>
+            <thead><tr><th>Month</th><th>Posts</th><th>Reach</th><th>Eng. rate</th><th>Saves</th><th>New followers</th></tr></thead>
             <tbody>
-              <tr><td>5 mistakes killing your saves</td><td>4,200</td><td>188</td><td>61</td><td class="er">14.3%</td></tr>
-              <tr><td>How I batch a week in 2 hours</td><td>3,150</td><td>96</td><td>40</td><td class="er">9.8%</td></tr>
-              <tr><td>3 free tools I use every week</td><td>2,780</td><td>71</td><td>18</td><td class="er">7.1%</td></tr>
+              <tr><td>October</td><td>16</td><td>38,500</td><td class="er">6.3%</td><td>690</td><td>410</td></tr>
+              <tr><td>November</td><td>18</td><td>44,200</td><td class="er">6.8%</td><td>812</td><td>486</td></tr>
+              <tr><td>December</td><td>17</td><td>51,900</td><td class="er">7.4%</td><td>955</td><td>552</td></tr>
             </tbody>
           </table>
         </div>
-        <div class="donut-row">
-          <div class="donut"></div>
-          <div class="legend">
-            <span><i style="background:#C2456A"></i>Educate 35%</span>
-            <span><i style="background:#8B6BC2"></i>Show How 25%</span>
-            <span><i style="background:#E08A4F"></i>Behind the Scenes 15%</span>
-            <span><i style="background:#5B82C4"></i>Recommend 15%</span>
-            <span><i style="background:#4FA37B"></i>Engage 10%</span>
-          </div>
+        <div class="post-open">
+          <div class="prop"><span>Best post</span><span>"5 mistakes" carousel. Numbered tips + one fix per slide.</span></div>
+          <div class="prop"><span>Stop doing</span><span>Text-only quote graphics</span></div>
+          <div class="prop"><span>Next experiment</span><span>3 Reels a week</span></div>
         </div>
       </div>
     </div>
@@ -570,11 +560,11 @@
       <p>The template comes with a simple routine. Follow it and you'll always be a week ahead.</p>
     </div>
     <div class="rhythm">
-      <div class="day"><div class="when">Mon</div><div class="mins">30 min</div><h3>Plan</h3><p>Shortlist ideas and put this week's posts on the calendar.</p></div>
-      <div class="day"><div class="when">Tue</div><div class="mins">90 min</div><h3>Write</h3><p>Batch hooks, copy and captions with the Playbook.</p></div>
-      <div class="day"><div class="when">Wed</div><div class="mins">90 min</div><h3>Design</h3><p>Make graphics and videos, flag anything missing.</p></div>
+      <div class="day"><div class="when">Mon</div><div class="mins">30 min</div><h3>Plan</h3><p>Pick ideas from the parking lot and put this week's posts on the calendar.</p></div>
+      <div class="day"><div class="when">Tue</div><div class="mins">90 min</div><h3>Write</h3><p>Batch hooks, slides and captions with the Hook & Caption Bank.</p></div>
+      <div class="day"><div class="when">Wed</div><div class="mins">90 min</div><h3>Design</h3><p>Design in Canva, upload graphics, add missing photos to the shot list.</p></div>
       <div class="day"><div class="when">Thu</div><div class="mins">30 min</div><h3>Schedule</h3><p>Run the QA checklist and load your scheduler.</p></div>
-      <div class="day"><div class="when">Fri</div><div class="mins">15 min</div><h3>Measure</h3><p>Log results for last week's posts.</p></div>
+      <div class="day"><div class="when">Fri</div><div class="mins">15 min</div><h3>Check in</h3><p>Mark posts published and note what did well.</p></div>
       <div class="day"><div class="when">Month end</div><div class="mins">30 min</div><h3>Review</h3><p>Keep what works, drop what doesn't.</p></div>
     </div>
     <p class="rhythm-note">About <strong>4½ hours a week</strong> for a full content calendar. Short on time? Run it as one batch day.</p>
@@ -601,7 +591,7 @@
       <div class="persona">
         <span class="ic">🌱</span>
         <h3>Beginners learning marketing</h3>
-        <p>The Playbook teaches as you go: how to write hooks, structure captions, pick CTAs and read your numbers.</p>
+        <p>The Hook & Caption Bank teaches as you go: how to write hooks, structure captions, pick CTAs and read your numbers.</p>
       </div>
     </div>
   </div>
@@ -616,15 +606,16 @@
     </div>
     <div class="pricing-card">
       <div class="badge">Instant access</div>
-      <h3>Social Media Command Center</h3>
+      <h3>SMM Dashboard</h3>
       <p style="color:var(--ink-soft)">Notion template + how-to PDF guide</p>
       <div class="amount"><sup>$</sup>149</div>
       <div class="once">One-time payment · USD · No subscription</div>
       <ul class="included">
-        <li>Notion dashboard with 5 connected databases</li>
-        <li>Content Calendar with 6 ready-made views</li>
+        <li>All-in-one Notion dashboard page</li>
+        <li>Content Calendar with status board, calendar and table views</li>
+        <li>IG/FB and TikTok graphics previews</li>
         <li>Brand Hub and 5-pillar content strategy</li>
-        <li>Content Playbook: 20 hooks, captions, CTAs, hashtags</li>
+        <li>Hook & Caption Bank: 15 hooks, CTAs, hashtag sets, size guide</li>
         <li>Repurposing workflow and pre-publish QA checklist</li>
         <li>Monthly performance tracker and review</li>
         <li>10-page How-to-Use PDF guide</li>
@@ -653,7 +644,7 @@
       </details>
       <details>
         <summary>I'm new to Notion. Will I be able to use it?</summary>
-        <p>Yes. The 10-page PDF guide walks you through setup step by step, and the template includes a Start Here page with a checklist. Example posts show you exactly what a finished entry looks like.</p>
+        <p>Yes. The 10-page PDF guide walks you through setup step by step, and the dashboard has a built-in "How to use" checklist. Example posts show you exactly what a finished entry looks like.</p>
       </details>
       <details>
         <summary>Can I use it for my clients?</summary>
@@ -661,7 +652,7 @@
       </details>
       <details>
         <summary>Which platforms does it work for?</summary>
-        <p>Any of them. It comes set up for Instagram, Facebook, TikTok, LinkedIn, YouTube, Threads, Pinterest and X, and you can add or remove platforms in a few clicks.</p>
+        <p>It comes set up for Instagram, Facebook and TikTok, with separate captions, hashtags and Canva links for feed and TikTok. You can add LinkedIn, YouTube or any other platform in a few clicks.</p>
       </details>
       <details>
         <summary>Does it post for me?</summary>
@@ -669,7 +660,7 @@
       </details>
       <details>
         <summary>Can I customise it?</summary>
-        <p>Completely. Rename pillars, change statuses, add properties, recolor anything. It's your copy.</p>
+        <p>Completely. Rename pillars and topic types, change statuses, add properties, recolor anything. It's your copy.</p>
       </details>
       <details>
         <summary>How do I get help?</summary>
@@ -682,8 +673,8 @@
 <section class="final">
   <div class="wrap">
     <h2>Stop juggling. Start running your content like a system.</h2>
-    <p>Everything in one place, a routine that keeps you consistent, and numbers that tell you what to do next.</p>
-    <a class="btn js-buy" href="#pricing">Get the Command Center · $149</a>
+    <p>Everything on one page, a routine that keeps you consistent, and a monthly review that tells you what to do next.</p>
+    <a class="btn js-buy" href="#pricing">Get the SMM Dashboard · $149</a>
   </div>
 </section>
 

@@ -1,0 +1,544 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The SMM Dashboard — How to Use</title>
+<style>
+  @font-face { font-family: "Fraunces"; font-weight: 100 900; src: url("../../assets/fonts/fraunces-latin.woff2") format("woff2"); }
+  @font-face { font-family: "Inter"; font-weight: 100 900; src: url("../../assets/fonts/inter-latin.woff2") format("woff2"); }
+  @page { size: Letter; margin: 0; }
+  :root {
+    --ink: #2B1F24;
+    --ink-soft: #5E4E55;
+    --rose: #C2456A;
+    --rose-dark: #9E3253;
+    --blush: #F7D9E0;
+    --blush-soft: #FCEEF1;
+    --cream: #FFF9F7;
+    --line: #EBD9DE;
+    --green: #2F7D5B;
+    --green-bg: #E5F3EC;
+    --blue: #3A5F9E;
+    --blue-bg: #E7EEF9;
+    --yellow-bg: #FFF4D6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #fff; }
+  body {
+    font-family: "Inter", "Liberation Sans", sans-serif;
+    color: var(--ink);
+    font-size: 10.5pt;
+    line-height: 1.55;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .page {
+    width: 8.5in;
+    height: 11in;
+    padding: 0.75in 0.8in 0.7in;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+    background: #fff;
+  }
+  .page:last-child { page-break-after: auto; }
+  .folio {
+    position: absolute;
+    bottom: 0.4in;
+    left: 0.8in;
+    right: 0.8in;
+    display: flex;
+    justify-content: space-between;
+    font-size: 8pt;
+    color: var(--ink-soft);
+    letter-spacing: 0.04em;
+  }
+  h1, h2, h3 { font-family: "Fraunces", Georgia, serif; font-weight: 700; line-height: 1.15; }
+  h2 { font-size: 24pt; margin-bottom: 6pt; }
+  h3 { font-size: 13pt; margin: 16pt 0 6pt; }
+  p { margin-bottom: 8pt; }
+  .eyebrow {
+    font-size: 8.5pt;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 6pt;
+  }
+  .lede { font-size: 12pt; color: var(--ink-soft); margin-bottom: 18pt; max-width: 6in; }
+  strong { font-weight: 600; }
+  ul, ol { padding-left: 16pt; margin-bottom: 8pt; }
+  li { margin-bottom: 4pt; }
+  li::marker { color: var(--rose); }
+  .sparkle { color: var(--rose); }
+
+  /* Cover */
+  .cover {
+    background: var(--cream);
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .cover-top {
+    flex: 1;
+    padding: 0.9in 0.8in 0;
+    background:
+      radial-gradient(circle at 85% 18%, var(--blush) 0, transparent 38%),
+      radial-gradient(circle at 10% 90%, var(--blush-soft) 0, transparent 40%);
+  }
+  .cover .brand { font-size: 9pt; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--rose); }
+  .cover h1 { font-size: 50pt; margin: 1.1in 0 14pt; letter-spacing: -0.01em; }
+  .cover h1 em { font-style: normal; color: var(--rose); }
+  .cover .sub { font-size: 15pt; color: var(--ink-soft); max-width: 5.2in; }
+  .cover-card {
+    margin: 0.5in 0.8in 0;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 14pt 14pt 0 0;
+    border-bottom: none;
+    padding: 18pt 20pt 0;
+    box-shadow: 0 -8pt 30pt rgba(194, 69, 106, 0.08);
+  }
+  .mini-board { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8pt; }
+  .mini-col h4 { font-size: 7.5pt; font-weight: 600; color: var(--ink-soft); margin-bottom: 6pt; }
+  .mini-card {
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: 6pt;
+    padding: 6pt 7pt;
+    margin-bottom: 6pt;
+    font-size: 7.5pt;
+    line-height: 1.3;
+  }
+  .tag {
+    display: inline-block;
+    font-size: 6.5pt;
+    font-weight: 600;
+    padding: 1pt 5pt;
+    border-radius: 3pt;
+    margin-top: 4pt;
+    margin-right: 2pt;
+  }
+  .t-pink { background: #F9DCE5; color: #9E3253; }
+  .t-purple { background: #EADFF7; color: #5B3A8C; }
+  .t-orange { background: #FCE5D3; color: #9A4B12; }
+  .t-blue { background: var(--blue-bg); color: var(--blue); }
+  .t-green { background: var(--green-bg); color: var(--green); }
+  .t-gray { background: #EEEAEB; color: #5E4E55; }
+  .t-yellow { background: #FBF0C9; color: #7A5B00; }
+  .t-red { background: #FBDADA; color: #A12C2C; }
+  .t-brown { background: #EFE3D9; color: #6E4B33; }
+
+  /* Components */
+  .callout {
+    border-radius: 10pt;
+    padding: 12pt 14pt;
+    margin: 10pt 0 12pt;
+    display: flex;
+    gap: 10pt;
+    align-items: flex-start;
+  }
+  .callout .ic { font-size: 14pt; line-height: 1; }
+  .callout p:last-child { margin-bottom: 0; }
+  .c-pink { background: var(--blush-soft); }
+  .c-green { background: var(--green-bg); }
+  .c-blue { background: var(--blue-bg); }
+  .c-yellow { background: var(--yellow-bg); }
+
+  table { width: 100%; border-collapse: collapse; font-size: 9pt; margin: 6pt 0 12pt; }
+  th { text-align: left; font-weight: 600; font-size: 8pt; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); padding: 5pt 8pt; border-bottom: 1.5px solid var(--ink); }
+  td { padding: 4.5pt 8pt; border-bottom: 1px solid var(--line); vertical-align: top; }
+  td:first-child { font-weight: 600; white-space: nowrap; }
+
+  .steps { list-style: none; padding: 0; counter-reset: s; }
+  .steps > li {
+    counter-increment: s;
+    position: relative;
+    padding-left: 30pt;
+    margin-bottom: 9pt;
+  }
+  .steps > li::before {
+    content: counter(s);
+    position: absolute;
+    left: 0; top: -1pt;
+    width: 20pt; height: 20pt;
+    border-radius: 50%;
+    background: var(--rose);
+    color: #fff;
+    font-weight: 700;
+    font-size: 9pt;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .steps > li > strong:first-child { display: block; margin-bottom: 1pt; }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12pt; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10pt; }
+  .card {
+    border: 1px solid var(--line);
+    border-radius: 10pt;
+    padding: 12pt 13pt;
+    background: #fff;
+  }
+  .card h4 { font-family: "Fraunces", Georgia, serif; font-size: 12pt; margin-bottom: 4pt; }
+  .card p { font-size: 9.5pt; color: var(--ink-soft); margin-bottom: 0; }
+  .card .em { font-size: 16pt; margin-bottom: 4pt; display: block; }
+
+  /* Flow diagram */
+  .flow { display: flex; align-items: stretch; gap: 0; margin: 14pt 0 6pt; }
+  .flow .node {
+    flex: 1;
+    border: 1.5px solid var(--rose);
+    border-radius: 10pt;
+    padding: 10pt 8pt;
+    text-align: center;
+    background: #fff;
+  }
+  .flow .node b { display: block; font-family: "Fraunces", Georgia, serif; font-size: 9.5pt; margin-bottom: 2pt; }
+  .flow .node span { font-size: 8pt; color: var(--ink-soft); line-height: 1.35; display: block; }
+  .flow .node.hl { background: var(--blush-soft); }
+  .flow .arrow { width: 22pt; display: flex; align-items: center; justify-content: center; color: var(--rose); font-size: 14pt; font-weight: 700; }
+  .loop-note { text-align: center; font-size: 8.5pt; color: var(--rose-dark); margin-bottom: 14pt; }
+  .feeders { display: flex; justify-content: center; gap: 14pt; margin-bottom: 10pt; }
+  .feeder { border: 1.5px dashed var(--line); border-radius: 8pt; padding: 7pt 12pt; font-size: 8.5pt; color: var(--ink-soft); text-align: center; }
+  .feeder b { color: var(--ink); }
+
+  .pipeline { display: flex; flex-wrap: wrap; gap: 6pt; margin: 10pt 0 14pt; }
+  .pipeline .tag { font-size: 8.5pt; padding: 4pt 9pt; border-radius: 20pt; margin: 0; }
+
+  .rhythm td:first-child { width: 1.45in; }
+  .formula {
+    font-family: "DejaVu Sans Mono", monospace;
+    font-size: 9.5pt;
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: 6pt;
+    padding: 8pt 10pt;
+    margin: 6pt 0 10pt;
+  }
+  .button {
+    display: inline-block;
+    background: var(--rose);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 9pt 18pt;
+    border-radius: 30pt;
+    font-size: 10.5pt;
+  }
+  a { color: var(--rose-dark); }
+  .faq h4 { font-weight: 600; font-size: 10.5pt; margin: 10pt 0 2pt; }
+  .faq p { color: var(--ink-soft); font-size: 10pt; }
+  .closing { background: var(--cream); }
+</style>
+</head>
+<body>
+
+<!-- 1. COVER -->
+<section class="page cover">
+  <div class="cover-top">
+    <div class="brand">Anchor Growth Co. <span class="sparkle">✦</span> How-to Guide</div>
+    <h1>The SMM<br><em>Dashboard</em></h1>
+    <p class="sub">Your step-by-step guide to setting up and running your Notion social media dashboard. Plan, create, publish and track every post in one place.</p>
+  </div>
+  <div class="cover-card">
+    <div class="mini-board">
+      <div class="mini-col">
+        <h4>Copy drafted</h4>
+        <div class="mini-card">W3 Fri: Before and after results<br><span class="tag t-purple">Show How</span></div>
+      </div>
+      <div class="mini-col">
+        <h4>Needs photo</h4>
+        <div class="mini-card">W3 Tue: 5 free tools I use<br><span class="tag t-blue">Recommend</span></div>
+      </div>
+      <div class="mini-col">
+        <h4>Scheduled</h4>
+        <div class="mini-card">W1 Fri: Plan a week in 1 hour<br><span class="tag t-purple">Show How</span></div>
+      </div>
+      <div class="mini-col">
+        <h4>Published</h4>
+        <div class="mini-card">W1 Tue: 5 mistakes killing your saves<br><span class="tag t-pink">Educate</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. WHAT'S INSIDE -->
+<section class="page">
+  <div class="eyebrow">Welcome</div>
+  <h2>What's inside</h2>
+  <p class="lede">Ideas, captions, Canva designs, photos and results usually live in five different places. The SMM Dashboard puts them on one Notion page, with a simple weekly routine to run it.</p>
+
+  <div class="grid-3">
+    <div class="card"><span class="em">📅</span><h4>Content Calendar</h4><p>Every post with its hook, slide copy, captions, hashtags, CTA, Canva links and graphics. Status board, calendar and table views.</p></div>
+    <div class="card"><span class="em">🖼️</span><h4>Graphics previews</h4><p>See every IG/FB and TikTok graphic at a glance in two gallery views, right on the dashboard.</p></div>
+    <div class="card"><span class="em">📌</span><h4>Events & content needed</h4><p>Upcoming key dates, plus a shot list of photos, Reels and B-roll you need to make.</p></div>
+    <div class="card"><span class="em">🎨</span><h4>Brand Hub & Pillars</h4><p>Positioning, audience, voice, colors, fonts and Canva links, plus 5 content pillars with target %.</p></div>
+    <div class="card"><span class="em">✍️</span><h4>Hook & Caption Bank</h4><p>15 hook formulas, caption structure and template, CTA bank, hashtag sets and a platform size cheat sheet.</p></div>
+    <div class="card"><span class="em">📊</span><h4>Track & improve</h4><p>Monthly performance tracker, 5 review questions, benchmarks, repurposing workflow and a QA checklist.</p></div>
+  </div>
+
+  <h3>How it fits together</h3>
+  <div class="feeders">
+    <div class="feeder"><b>🎨 Brand Hub</b><br>keeps every post on-brand</div>
+    <div class="feeder"><b>✍️ Hook & Caption Bank</b><br>speeds up writing</div>
+    <div class="feeder"><b>📌 Upcoming events</b><br>tells you what to plan for</div>
+  </div>
+  <div class="flow">
+    <div class="node"><b>💡 Idea Parking Lot</b><span>Dump every raw idea</span></div>
+    <div class="arrow">→</div>
+    <div class="node hl"><b>📅 Calendar</b><span>Date it, write it, design it</span></div>
+    <div class="arrow">→</div>
+    <div class="node"><b>✅ QA</b><span>Run the checklist</span></div>
+    <div class="arrow">→</div>
+    <div class="node"><b>🚀 Publish</b><span>Schedule and go live</span></div>
+    <div class="arrow">→</div>
+    <div class="node"><b>📊 Monthly review</b><span>Keep what works</span></div>
+  </div>
+  <p class="loop-note">↺ What you learn in the monthly review becomes next month's ideas.</p>
+
+  <div class="callout c-pink"><span class="ic">✦</span><p><strong>Before you start:</strong> you need a free Notion account. Everything in this template works on Notion's free plan, on desktop, web and mobile.</p></div>
+  <div class="folio"><span>The SMM Dashboard</span><span>2</span></div>
+</section>
+
+<!-- 3. DUPLICATE -->
+<section class="page">
+  <div class="eyebrow">Step 1 · 2 minutes</div>
+  <h2>Get the template into your Notion</h2>
+  <p class="lede">You'll make your own private copy. Nobody else, including us, can see what you put in it.</p>
+
+  <ol class="steps">
+    <li><strong>Log in to Notion</strong>Open notion.com on desktop or web and sign in (or create a free account).</li>
+    <li><strong>Open your template link</strong>__TEMPLATE_LINK_SENTENCE__</li>
+    <li><strong>Click "Duplicate"</strong>It's in the top-right corner of the page. If you're asked to pick a workspace, choose the one you want to work in.</li>
+    <li><strong>Find it in your sidebar</strong>The template appears under <em>Private</em> in your left sidebar as <strong>✨ SMM Dashboard</strong>. Right-click it and choose <strong>Add to Favorites</strong> so it's always one click away.</li>
+    <li><strong>Open the "How to use this dashboard" toggle</strong>It's in the grey box at the top of the page and has the setup checklist from the next page.</li>
+  </ol>
+  __TEMPLATE_BUTTON__
+
+  <div class="callout c-yellow"><span class="ic">💡</span><div><p><strong>Managing social for clients?</strong> Duplicate the template once per client. Each copy is completely separate, so data never mixes and you can share a client's copy with them without exposing anyone else's.</p></div></div>
+
+  <h3>Getting around the dashboard</h3>
+  <table>
+    <tr><th>Section</th><th>What it's for</th></tr>
+    <tr><td>Top box</td><td>Short intro and the "How to use this dashboard" setup guide</td></tr>
+    <tr><td>Left column</td><td>Upcoming events, then IG/FB and TikTok graphics previews</td></tr>
+    <tr><td>Right column</td><td>Content needed (your shot list), the Content Calendar and a calendar view</td></tr>
+    <tr><td>Marketing Tools</td><td>Your tool gallery and tech stack with links</td></tr>
+    <tr><td>Brand & writing</td><td>Brand Hub, Content Pillars, hashtags, CTAs, Hook & Caption Bank</td></tr>
+    <tr><td>Bottom</td><td>Repurposing workflow, QA checklist, monthly tracker, review, Idea Parking Lot</td></tr>
+  </table>
+  <div class="folio"><span>The SMM Dashboard</span><span>3</span></div>
+</section>
+
+<!-- 4. SETUP -->
+<section class="page">
+  <div class="eyebrow">Step 2 · 30 minutes</div>
+  <h2>Make it yours</h2>
+  <p class="lede">Do this once. After that, you only need the weekly rhythm on page 6.</p>
+
+  <ol class="steps">
+    <li><strong>Fill in the Brand Hub</strong>Replace every [bracketed] placeholder: brand name, positioning, story, offer, audience, voice, words to use and avoid, colors (with HEX codes), fonts, Canva folder links, posting schedule and handles.</li>
+    <li><strong>Set your 5 content pillars</strong>The template ships with Educate, Show How, Behind the Scenes, Recommend and Engage. Update the Content Pillars table, then rename the matching options in the Content Calendar: open the calendar, click the <strong>Pillar</strong> column header → <strong>Edit property</strong> → click an option to rename it.</li>
+    <li><strong>Adjust Topic Types and Platforms</strong>Do the same for <strong>Topic Type</strong> (Tips &amp; How-to, Myth vs Fact, Tutorial…) and <strong>Platforms</strong>. It comes with Instagram, Facebook and TikTok; add LinkedIn, YouTube or others if you use them.</li>
+    <li><strong>Add your hashtag sets and CTAs</strong>Open the <em>Hashtag sets</em> and <em>CTA bank</em> toggles and replace the placeholders with your own.</li>
+    <li><strong>Add upcoming events</strong>List the next 90 days of key dates in the blue <em>Upcoming events</em> box. There's a list of ideas inside the toggle.</li>
+    <li><strong>Set up Marketing Tools</strong>Add the tools you use with their links. Add a logo to <em>Files &amp; media</em> so it shows on the gallery card.</li>
+    <li><strong>Delete the EXAMPLE posts</strong>The calendar has 8 sample posts marked EXAMPLE so you can see how finished entries look. Open a couple, then select them all and press Delete.</li>
+    <li><strong>Brain-dump ideas</strong>Fill the <em>Idea Parking Lot</em> at the bottom with as many ideas as you can. Don't filter. You'll sort them on Monday.</li>
+  </ol>
+
+  <div class="callout c-blue"><span class="ic">🔒</span><p><strong>Rename, don't delete.</strong> The views use Date, Status, Pillar and the two Graphics fields. Renaming any property is fine; Notion updates the views automatically. Deleting them is what breaks things.</p></div>
+  <div class="folio"><span>The SMM Dashboard</span><span>4</span></div>
+</section>
+
+<!-- 5. CONTENT CALENDAR -->
+<section class="page">
+  <div class="eyebrow">The core</div>
+  <h2>The Content Calendar</h2>
+  <p class="lede" style="margin-bottom:6pt">One row is one post. Click a post to open it and see every field.</p>
+
+  <h3>Views</h3>
+  <table>
+    <tr><th>View</th><th>Use it to</th></tr>
+    <tr><td>Status board</td><td><strong>Your daily home.</strong> Posts grouped by status. Drag cards to the next column as work moves.</td></tr>
+    <tr><td>Calendar</td><td>See your month at a glance and spot gaps. Drag a post to a new day to reschedule it.</td></tr>
+    <tr><td>Default view</td><td>A full table of every field, handy for bulk editing</td></tr>
+    <tr><td>IG/FB Graphics Preview</td><td>Gallery of your feed graphics (left column of the dashboard)</td></tr>
+    <tr><td>TikTok Graphics Preview</td><td>Gallery of your TikTok graphics (left column of the dashboard)</td></tr>
+  </table>
+
+  <h3>Fields</h3>
+  <table>
+    <tr><th>Field</th><th>What to put there</th></tr>
+    <tr><td>Name</td><td>Week, day and working title, e.g. "W1 Tue: 5 mistakes…"</td></tr>
+    <tr><td>Date · Week</td><td>The publish date, and the week number in your monthly plan</td></tr>
+    <tr><td>Status</td><td>Where the post is in the workflow (see next page)</td></tr>
+    <tr><td>Pillar · Topic Type</td><td>Which pillar it serves and what kind of post it is</td></tr>
+    <tr><td>Content Type · Platforms</td><td>Carousel, Single Post or Reel, and where it's going</td></tr>
+    <tr><td>Hook</td><td>The first line or cover text. Pull a formula from the Hook bank.</td></tr>
+    <tr><td>Slide Copy</td><td>Slide-by-slide text, or the Reel script</td></tr>
+    <tr><td>Caption (IG + FB) · (TikTok)</td><td>A full caption for feed, and a short one for TikTok</td></tr>
+    <tr><td>Hashtags (IG + FB) · (TikTok)</td><td>Paste from your hashtag sets</td></tr>
+    <tr><td>CTA</td><td>The one thing you want people to do</td></tr>
+    <tr><td>Visual Brief</td><td>What the graphic should look like, and the photo you need</td></tr>
+    <tr><td>Canva IG/FB · Canva TikTok</td><td>Links to the Canva designs</td></tr>
+    <tr><td>IG/FB · TikTok Graphics</td><td>Upload the exported images. They appear in the preview galleries.</td></tr>
+    <tr><td>Notes</td><td>Anything else: feedback, reminders, results</td></tr>
+  </table>
+  <div class="folio"><span>The SMM Dashboard</span><span>5</span></div>
+</section>
+
+<!-- 6. STATUS + RHYTHM -->
+<section class="page">
+  <div class="eyebrow">Your routine</div>
+  <h2>Statuses & weekly rhythm</h2>
+  <p class="lede">Every post moves through seven statuses. A few focused blocks a week keep it moving.</p>
+
+  <div class="pipeline">
+    <span class="tag t-blue">Not started</span>
+    <span class="tag t-yellow">Copy drafted</span>
+    <span class="tag t-brown">Designed</span>
+    <span class="tag t-orange">Needs photo</span>
+    <span class="tag t-purple">Ready to post</span>
+    <span class="tag t-gray">Scheduled</span>
+    <span class="tag t-green">Published</span>
+  </div>
+  <p><strong>Needs photo</strong> means the design is done but it's waiting on a photo (for example, a TikTok background). Add the shot to the <em>Content needed</em> box so you can take them all in one session.</p>
+
+  <h3>The weekly rhythm (about 4½ hours a week)</h3>
+  <table class="rhythm">
+    <tr><th>When</th><th>What to do</th></tr>
+    <tr><td>Monday · 30 min</td><td><strong>Plan.</strong> Pick ideas from the Idea Parking Lot. Add them to the calendar as <em>Not started</em> with a date, week, pillar and topic type. Check Upcoming events.</td></tr>
+    <tr><td>Tuesday · 90 min</td><td><strong>Write.</strong> Batch hooks, slide copy, captions and CTAs using the Hook &amp; Caption Bank. Move posts to <em>Copy drafted</em>.</td></tr>
+    <tr><td>Wednesday · 90 min</td><td><strong>Design.</strong> Make the graphics in Canva, paste the links and upload the exports. Move to <em>Designed</em>, or <em>Needs photo</em> if you're waiting on a shot.</td></tr>
+    <tr><td>Thursday · 30 min</td><td><strong>QA and schedule.</strong> Run the Pre-Publish QA Checklist, move to <em>Ready to post</em>, schedule, then move to <em>Scheduled</em>.</td></tr>
+    <tr><td>Friday · 15 min</td><td><strong>Check in.</strong> Mark live posts <em>Published</em> and note anything that did well in Notes.</td></tr>
+    <tr><td>Month end · 30 min</td><td><strong>Review.</strong> Fill in the Monthly Performance Tracker and answer the five review questions.</td></tr>
+  </table>
+
+  <div class="callout c-green"><span class="ic">⏱️</span><p><strong>Short on time?</strong> Merge Tuesday–Thursday into one 3-hour batch day. The status board still works; you'll just move cards further in one sitting.</p></div>
+  <div class="folio"><span>The SMM Dashboard</span><span>6</span></div>
+</section>
+
+<!-- 7. WRITING -->
+<section class="page">
+  <div class="eyebrow">Create faster</div>
+  <h2>Writing and designing a post</h2>
+  <p class="lede">Open a post and scroll to the Hook &amp; Caption Bank on the dashboard. Here's the path from blank page to ready-to-post.</p>
+
+  <ol class="steps">
+    <li><strong>Pick a hook formula</strong>The <em>Hook formulas</em> toggle has 15 fill-in-the-blank hooks. Write 3 versions and keep the best in the <em>Hook</em> field.</li>
+    <li><strong>Write the slides or script</strong>Carousels: one idea per slide, 6–10 slides, big text. Reels: hook on screen in the first 2 seconds, then the value, then the CTA. Put it in <em>Slide Copy</em>.</li>
+    <li><strong>Write both captions</strong>Use the six-part <em>Caption structure</em> (or the copy-paste template) for IG/FB. Then write a one- or two-line version for TikTok.</li>
+    <li><strong>Choose exactly one CTA</strong>Match it to the goal from the CTA bank: shares for reach, saves for value, a comment keyword for leads.</li>
+    <li><strong>Paste the hashtags</strong>Use the core set plus the right topic set. Follow the usage rule in the toggle for each platform.</li>
+    <li><strong>Brief and design</strong>Write a <em>Visual Brief</em>, design in Canva using the sizes in the <em>Platform size cheat sheet</em>, paste the Canva links and upload the exports to the Graphics fields.</li>
+  </ol>
+
+  <h3>Repurpose your winners</h3>
+  <p>When a post does well, run the <strong>Repurposing Workflow</strong>: one strong idea becomes 3 short videos, 1 carousel, 2 quote graphics, a text post and a story poll. Add each piece to the calendar.</p>
+
+  <h3>Run QA before anything gets scheduled</h3>
+  <p>The 12-point <strong>Pre-Publish QA Checklist</strong> catches the mistakes that cost reach: a weak hook, two CTAs, missing video captions, an unreadable cover, broken links. Untick the boxes and reuse it for every post.</p>
+  <div class="callout c-pink"><span class="ic">✦</span><p><strong>Pro tip:</strong> paste your Brand Hub tone of voice and a few of your best captions into your AI writing tool before asking it for drafts. The output will sound much more like you.</p></div>
+  <div class="folio"><span>The SMM Dashboard</span><span>7</span></div>
+</section>
+
+<!-- 8. RESULTS -->
+<section class="page">
+  <div class="eyebrow">Grow on purpose</div>
+  <h2>Tracking results</h2>
+  <p class="lede">Thirty minutes at the end of each month tells you exactly what to make more of.</p>
+
+  <h3>The Monthly Performance Tracker</h3>
+  <p>On the last working day of the month, open your platform insights (or your scheduler's analytics) and fill in one row: posts, reach, engagement rate, saves, shares, new followers, leads/DMs and your top post. Rename <em>[Month 1]</em> to the actual month, and add a row each month.</p>
+  <p>To work out engagement rate:</p>
+  <div class="formula">Engagements = Likes + Comments + Saves + Shares<br>Engagement rate (%) = Engagements ÷ Reach × 100</div>
+  <p style="margin-bottom:0">Write the top post's name in the last column, and add a note to that post in the calendar about why it worked.</p>
+
+  <h3>The Monthly Review</h3>
+  <ol class="steps">
+    <li><strong>Which post performed best, and what drove it?</strong>Look at the hook, format and topic. Make more like it.</li>
+    <li><strong>Which pillar underperformed, and why?</strong>Compare against the % targets in your Content Pillars table.</li>
+    <li><strong>What are comments and DMs asking for?</strong>Add those questions to the Idea Parking Lot.</li>
+    <li><strong>What will you stop doing, and what's your one experiment?</strong>Pick one change for next month. Just one.</li>
+  </ol>
+
+  <h3>Benchmarks</h3>
+  <table>
+    <tr><th>Metric</th><th>Healthy</th><th>Great</th></tr>
+    <tr><td>Engagement rate (by reach)</td><td>3–5%</td><td>6%+</td></tr>
+    <tr><td>Saves per 1,000 reach</td><td>10–20</td><td>30+</td></tr>
+    <tr><td>Shares per 1,000 reach</td><td>5–10</td><td>15+</td></tr>
+    <tr><td>Monthly follower growth</td><td>3–5%</td><td>10%+</td></tr>
+  </table>
+  <p style="font-size:8.5pt;color:var(--ink-soft);margin-bottom:0">Benchmarks vary by niche and account size. Your own month-over-month trend matters most.</p>
+  <div class="folio"><span>The SMM Dashboard</span><span>8</span></div>
+</section>
+
+<!-- 9. OTHER SECTIONS + TIPS -->
+<section class="page">
+  <div class="eyebrow">The supporting cast</div>
+  <h2>Everything else on the page</h2>
+
+  <div class="grid-2" style="margin-top:12pt">
+    <div class="card">
+      <h4>📌 Content needed</h4>
+      <p>Your shot list. Note every photo, Reel and B-roll clip you need, then shoot them all in one session. There's a ready-made B-roll list to batch film.</p>
+    </div>
+    <div class="card">
+      <h4>🖼️ Graphics previews</h4>
+      <p>Two galleries show the images you upload to <em>IG/FB Graphics</em> and <em>TikTok Graphics</em>. Use them to check your feed looks cohesive before you post.</p>
+    </div>
+    <div class="card">
+      <h4>💡 Marketing Tools</h4>
+      <p>A gallery of the tools you use (Canva, Metricool, Make, Google Drive…) with links, plus a tech stack table. Store which account a tool is under, <strong>never passwords</strong>.</p>
+    </div>
+    <div class="card">
+      <h4>💡 Idea Parking Lot</h4>
+      <p>A checklist at the bottom of the page for raw ideas. No filtering, no formatting. Move the good ones into the calendar every Monday.</p>
+    </div>
+  </div>
+
+  <h3>Power-user tips</h3>
+  <ul>
+    <li><strong>Mobile capture:</strong> add the dashboard to Favorites in the Notion app and log ideas in seconds.</li>
+    <li><strong>Hide fields you don't use:</strong> open any post → ••• → <em>Customize page</em> and hide empty or unused properties.</li>
+    <li><strong>Post templates:</strong> in the Content Calendar, click the arrow next to <em>New</em> → <em>New template</em> to save a pre-filled post (e.g. "Tuesday carousel") with your usual hashtags and CTA.</li>
+    <li><strong>Client approvals:</strong> share a client's copy as "Can comment". They comment on the post; you move it on once it's approved.</li>
+    <li><strong>Automate it:</strong> with Make or Zapier you can send a post's caption and graphics to your scheduler when its status changes to <em>Ready to post</em>.</li>
+  </ul>
+  <div class="folio"><span>The SMM Dashboard</span><span>9</span></div>
+</section>
+
+<!-- 10. FAQ + SUPPORT -->
+<section class="page closing">
+  <div class="eyebrow">Help</div>
+  <h2>FAQ & troubleshooting</h2>
+  <div class="faq">
+    <h4>Do I need a paid Notion plan?</h4>
+    <p>No. Everything works on the free plan. Notion's free plan has a file-upload size limit, so for big videos paste a Drive or Canva link instead of uploading.</p>
+    <h4>I deleted a view, property or row by accident.</h4>
+    <p>Press Ctrl/Cmd + Z straight away. For deleted pages, check <em>Trash</em> in the sidebar. You can also re-duplicate the original template any time from your link.</p>
+    <h4>The graphics previews are empty.</h4>
+    <p>They show images uploaded to the <em>IG/FB Graphics</em> and <em>TikTok Graphics</em> fields. Upload your exported PNG or JPG files there.</p>
+    <h4>A post isn't showing on the Calendar view.</h4>
+    <p>It needs a Date. Undated posts still appear in the Status board and the table.</p>
+    <h4>A card disappeared from the Status board after I renamed a status.</h4>
+    <p>Rename the existing option rather than creating a new one, and check that empty groups aren't hidden (••• → Group → Show empty groups).</p>
+    <h4>Can I use this for more than one brand or client?</h4>
+    <p>Yes. Duplicate the template once per brand. Your licence covers your own brands and the clients you manage.</p>
+  </div>
+
+  <div class="callout c-pink" style="margin-top:18pt"><span class="ic">💌</span><div>
+    <p><strong>Need help?</strong> Reply to your purchase email and we'll get back to you within 2 business days.</p>
+    <p style="font-size:9pt;color:var(--ink-soft)"><strong>Licence:</strong> for personal use and for managing your own clients' accounts. Please don't resell, share or redistribute the template or this guide.</p>
+  </div></div>
+
+  <p style="margin-top:22pt;font-family:'Fraunces',Georgia,serif;font-size:16pt">Now go make something worth saving. <span class="sparkle">✦</span></p>
+  <p style="color:var(--ink-soft)">— Anchor Growth Co.</p>
+  <div class="folio"><span>The SMM Dashboard</span><span>10</span></div>
+</section>
+
+</body>
+</html>
