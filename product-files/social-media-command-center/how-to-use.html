@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Social Media Command Center — How to Use</title>
+<style>
+  @font-face { font-family: "Fraunces"; font-weight: 100 900; src: url("../../assets/fonts/fraunces-latin.woff2") format("woff2"); }
+  @font-face { font-family: "Inter"; font-weight: 100 900; src: url("../../assets/fonts/inter-latin.woff2") format("woff2"); }
+  @page { size: Letter; margin: 0; }
+  :root {
+    --ink: #2B1F24;
+    --ink-soft: #5E4E55;
+    --rose: #C2456A;
+    --rose-dark: #9E3253;
+    --blush: #F7D9E0;
+    --blush-soft: #FCEEF1;
+    --cream: #FFF9F7;
+    --line: #EBD9DE;
+    --green: #2F7D5B;
+    --green-bg: #E5F3EC;
+    --blue: #3A5F9E;
+    --blue-bg: #E7EEF9;
+    --yellow-bg: #FFF4D6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #fff; }
+  body {
+    font-family: "Inter", "Liberation Sans", sans-serif;
+    color: var(--ink);
+    font-size: 10.5pt;
+    line-height: 1.55;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .page {
+    width: 8.5in;
+    height: 11in;
+    padding: 0.75in 0.8in 0.7in;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+    background: #fff;
+  }
+  .page:last-child { page-break-after: auto; }
+  .folio {
+    position: absolute;
+    bottom: 0.4in;
+    left: 0.8in;
+    right: 0.8in;
+    display: flex;
+    justify-content: space-between;
+    font-size: 8pt;
+    color: var(--ink-soft);
+    letter-spacing: 0.04em;
+  }
+  h1, h2, h3 { font-family: "Fraunces", Georgia, serif; font-weight: 700; line-height: 1.15; }
+  h2 { font-size: 24pt; margin-bottom: 6pt; }
+  h3 { font-size: 13pt; margin: 16pt 0 6pt; }
+  p { margin-bottom: 8pt; }
+  .eyebrow {
+    font-size: 8.5pt;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 6pt;
+  }
+  .lede { font-size: 12pt; color: var(--ink-soft); margin-bottom: 18pt; max-width: 6in; }
+  strong { font-weight: 600; }
+  ul, ol { padding-left: 16pt; margin-bottom: 8pt; }
+  li { margin-bottom: 4pt; }
+  li::marker { color: var(--rose); }
+  .sparkle { color: var(--rose); }
+
+  /* Cover */
+  .cover {
+    background: var(--cream);
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .cover-top {
+    flex: 1;
+    padding: 0.9in 0.8in 0;
+    background:
+      radial-gradient(circle at 85% 18%, var(--blush) 0, transparent 38%),
+      radial-gradient(circle at 10% 90%, var(--blush-soft) 0, transparent 40%);
+  }
+  .cover .brand { font-size: 9pt; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--rose); }
+  .cover h1 { font-size: 50pt; margin: 1.1in 0 14pt; letter-spacing: -0.01em; }
+  .cover h1 em { font-style: normal; color: var(--rose); }
+  .cover .sub { font-size: 15pt; color: var(--ink-soft); max-width: 5.2in; }
+  .cover-card {
+    margin: 0.5in 0.8in 0;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 14pt 14pt 0 0;
+    border-bottom: none;
+    padding: 18pt 20pt 0;
+    box-shadow: 0 -8pt 30pt rgba(194, 69, 106, 0.08);
+  }
+  .mini-board { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8pt; }
+  .mini-col h4 { font-size: 7.5pt; font-weight: 600; color: var(--ink-soft); margin-bottom: 6pt; }
+  .mini-card {
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: 6pt;
+    padding: 6pt 7pt;
+    margin-bottom: 6pt;
+    font-size: 7.5pt;
+    line-height: 1.3;
+  }
+  .tag {
+    display: inline-block;
+    font-size: 6.5pt;
+    font-weight: 600;
+    padding: 1pt 5pt;
+    border-radius: 3pt;
+    margin-top: 4pt;
+    margin-right: 2pt;
+  }
+  .t-pink { background: #F9DCE5; color: #9E3253; }
+  .t-purple { background: #EADFF7; color: #5B3A8C; }
+  .t-orange { background: #FCE5D3; color: #9A4B12; }
+  .t-blue { background: var(--blue-bg); color: var(--blue); }
+  .t-green { background: var(--green-bg); color: var(--green); }
+  .t-gray { background: #EEEAEB; color: #5E4E55; }
+  .t-yellow { background: #FBF0C9; color: #7A5B00; }
+  .t-red { background: #FBDADA; color: #A12C2C; }
+  .t-brown { background: #EFE3D9; color: #6E4B33; }
+
+  /* Components */
+  .callout {
+    border-radius: 10pt;
+    padding: 12pt 14pt;
+    margin: 10pt 0 12pt;
+    display: flex;
+    gap: 10pt;
+    align-items: flex-start;
+  }
+  .callout .ic { font-size: 14pt; line-height: 1; }
+  .callout p:last-child { margin-bottom: 0; }
+  .c-pink { background: var(--blush-soft); }
+  .c-green { background: var(--green-bg); }
+  .c-blue { background: var(--blue-bg); }
+  .c-yellow { background: var(--yellow-bg); }
+
+  table { width: 100%; border-collapse: collapse; font-size: 9pt; margin: 6pt 0 12pt; }
+  th { text-align: left; font-weight: 600; font-size: 8pt; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); padding: 5pt 8pt; border-bottom: 1.5px solid var(--ink); }
+  td { padding: 4.5pt 8pt; border-bottom: 1px solid var(--line); vertical-align: top; }
+  td:first-child { font-weight: 600; white-space: nowrap; }
+
+  .steps { list-style: none; padding: 0; counter-reset: s; }
+  .steps > li {
+    counter-increment: s;
+    position: relative;
+    padding-left: 30pt;
+    margin-bottom: 9pt;
+  }
+  .steps > li::before {
+    content: counter(s);
+    position: absolute;
+    left: 0; top: -1pt;
+    width: 20pt; height: 20pt;
+    border-radius: 50%;
+    background: var(--rose);
+    color: #fff;
+    font-weight: 700;
+    font-size: 9pt;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .steps > li > strong:first-child { display: block; margin-bottom: 1pt; }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12pt; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10pt; }
+  .card {
+    border: 1px solid var(--line);
+    border-radius: 10pt;
+    padding: 12pt 13pt;
+    background: #fff;
+  }
+  .card h4 { font-family: "Fraunces", Georgia, serif; font-size: 12pt; margin-bottom: 4pt; }
+  .card p { font-size: 9.5pt; color: var(--ink-soft); margin-bottom: 0; }
+  .card .em { font-size: 16pt; margin-bottom: 4pt; display: block; }
+
+  /* Flow diagram */
+  .flow { display: flex; align-items: stretch; gap: 0; margin: 14pt 0 6pt; }
+  .flow .node {
+    flex: 1;
+    border: 1.5px solid var(--rose);
+    border-radius: 10pt;
+    padding: 10pt 8pt;
+    text-align: center;
+    background: #fff;
+  }
+  .flow .node b { display: block; font-family: "Fraunces", Georgia, serif; font-size: 9.5pt; margin-bottom: 2pt; }
+  .flow .node span { font-size: 8pt; color: var(--ink-soft); line-height: 1.35; display: block; }
+  .flow .node.hl { background: var(--blush-soft); }
+  .flow .arrow { width: 22pt; display: flex; align-items: center; justify-content: center; color: var(--rose); font-size: 14pt; font-weight: 700; }
+  .loop-note { text-align: center; font-size: 8.5pt; color: var(--rose-dark); margin-bottom: 14pt; }
+  .feeders { display: flex; justify-content: center; gap: 14pt; margin-bottom: 10pt; }
+  .feeder { border: 1.5px dashed var(--line); border-radius: 8pt; padding: 7pt 12pt; font-size: 8.5pt; color: var(--ink-soft); text-align: center; }
+  .feeder b { color: var(--ink); }
+
+  .pipeline { display: flex; flex-wrap: wrap; gap: 6pt; margin: 10pt 0 14pt; }
+  .pipeline .tag { font-size: 8.5pt; padding: 4pt 9pt; border-radius: 20pt; margin: 0; }
+
+  .rhythm td:first-child { width: 1.45in; }
+  .formula {
+    font-family: "DejaVu Sans Mono", monospace;
+    font-size: 9.5pt;
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: 6pt;
+    padding: 8pt 10pt;
+    margin: 6pt 0 10pt;
+  }
+  .button {
+    display: inline-block;
+    background: var(--rose);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 9pt 18pt;
+    border-radius: 30pt;
+    font-size: 10.5pt;
+  }
+  a { color: var(--rose-dark); }
+  .faq h4 { font-weight: 600; font-size: 10.5pt; margin: 10pt 0 2pt; }
+  .faq p { color: var(--ink-soft); font-size: 10pt; }
+  .closing { background: var(--cream); }
+</style>
+</head>
+<body>
+
+<!-- 1. COVER -->
+<section class="page cover">
+  <div class="cover-top">
+    <div class="brand">Anchor Growth Co. <span class="sparkle">✦</span> How-to Guide</div>
+    <h1>Social Media<br><em>Command Center</em></h1>
+    <p class="sub">Your step-by-step guide to setting up and running your Notion content dashboard. Plan, create, publish and grow, all in one place.</p>
+  </div>
+  <div class="cover-card">
+    <div class="mini-board">
+      <div class="mini-col">
+        <h4>✍️ Drafting</h4>
+        <div class="mini-card">11.11 teaser<br><span class="tag t-blue">Recommend</span></div>
+        <div class="mini-card">Myth vs fact<br><span class="tag t-pink">Educate</span></div>
+      </div>
+      <div class="mini-col">
+        <h4>🎨 Designing</h4>
+        <div class="mini-card">A day running my business<br><span class="tag t-orange">Behind the Scenes</span></div>
+      </div>
+      <div class="mini-col">
+        <h4>⏰ Scheduled</h4>
+        <div class="mini-card">Batch a week in 2 hours<br><span class="tag t-purple">Show How</span></div>
+        <div class="mini-card">3 free tools I use<br><span class="tag t-blue">Recommend</span></div>
+      </div>
+      <div class="mini-col">
+        <h4>🚀 Published</h4>
+        <div class="mini-card">5 mistakes killing your saves<br><span class="tag t-pink">Educate</span><span class="tag t-green">14.3% ER</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. WHAT'S INSIDE -->
+<section class="page">
+  <div class="eyebrow">Welcome</div>
+  <h2>What's inside</h2>
+  <p class="lede">Most social media chaos comes from ideas, drafts, designs, captions and results living in five different places. This dashboard puts them in one, and gives you a weekly routine to run it.</p>
+
+  <div class="grid-3">
+    <div class="card"><span class="em">📅</span><h4>Content Calendar</h4><p>Every post with its hook, copy, caption, CTA, hashtags, design link, schedule and results. Six built-in views.</p></div>
+    <div class="card"><span class="em">💡</span><h4>Idea Bank</h4><p>Capture ideas the moment they show up. Sort by pillar, source and priority, then promote the best ones.</p></div>
+    <div class="card"><span class="em">🎯</span><h4>Campaigns & Key Dates</h4><p>Holidays, sales and launches on a timeline, with every supporting post linked.</p></div>
+    <div class="card"><span class="em">📊</span><h4>Monthly Performance</h4><p>One row per month with auto-calculated engagement rate and a 5-question review.</p></div>
+    <div class="card"><span class="em">🎨</span><h4>Brand Hub</h4><p>Positioning, voice, colors, fonts, asset links and content pillars on one page you can share.</p></div>
+    <div class="card"><span class="em">📚</span><h4>Content Playbook</h4><p>20 hook formulas, caption template, CTA bank, hashtag sets, repurposing workflow, QA checklist and benchmarks.</p></div>
+  </div>
+
+  <h3>How it fits together</h3>
+  <div class="feeders">
+    <div class="feeder"><b>🎨 Brand Hub</b><br>keeps every post on-brand</div>
+    <div class="feeder"><b>📚 Content Playbook</b><br>speeds up writing</div>
+    <div class="feeder"><b>🎯 Campaigns</b><br>tells you what to promote</div>
+  </div>
+  <div class="flow">
+    <div class="node"><b>💡 Idea Bank</b><span>Capture everything, shortlist weekly</span></div>
+    <div class="arrow">→</div>
+    <div class="node hl"><b>📅 Calendar</b><span>Date it, write it, design it, QA it</span></div>
+    <div class="arrow">→</div>
+    <div class="node"><b>🚀 Publish</b><span>Schedule and go live</span></div>
+    <div class="arrow">→</div>
+    <div class="node"><b>📈 Results</b><span>Log metrics 7 days later</span></div>
+    <div class="arrow">→</div>
+    <div class="node"><b>📊 Monthly review</b><span>Keep what works, drop what doesn't</span></div>
+  </div>
+  <p class="loop-note">↺ What you learn in the monthly review becomes next month's ideas.</p>
+
+  <div class="callout c-pink"><span class="ic">✦</span><p><strong>Before you start:</strong> you need a free Notion account. Everything in this template works on Notion's free plan, on desktop, web and mobile.</p></div>
+  <div class="folio"><span>Social Media Command Center</span><span>2</span></div>
+</section>
+
+<!-- 3. DUPLICATE -->
+<section class="page">
+  <div class="eyebrow">Step 1 · 2 minutes</div>
+  <h2>Get the template into your Notion</h2>
+  <p class="lede">You'll make your own private copy. Nobody else, including us, can see what you put in it.</p>
+
+  <ol class="steps">
+    <li><strong>Log in to Notion</strong>Open notion.com on desktop or web and sign in (or create a free account).</li>
+    <li><strong>Open your template link</strong>__TEMPLATE_LINK_SENTENCE__</li>
+    <li><strong>Click "Duplicate"</strong>It's in the top-right corner of the page. If you're asked to pick a workspace, choose the one you want to work in.</li>
+    <li><strong>Find it in your sidebar</strong>The template appears under <em>Private</em> in your left sidebar as <strong>✨ Social Media Command Center</strong>. Right-click it and choose <strong>Add to Favorites</strong> so it's always one click away.</li>
+    <li><strong>Open 🚀 Start Here</strong>It's the first quick link on the dashboard and has the setup checklist from the next page.</li>
+  </ol>
+  __TEMPLATE_BUTTON__
+
+  <div class="callout c-yellow"><span class="ic">💡</span><div><p><strong>Managing social for clients?</strong> Duplicate the template once per client. Each copy is completely separate, so data never mixes and you can share a client's copy with them without exposing anyone else's.</p></div></div>
+
+  <h3>Getting around the dashboard</h3>
+  <table>
+    <tr><th>Section</th><th>What it's for</th></tr>
+    <tr><td>Top row</td><td>Quick links to Start Here, Brand Hub and Content Playbook, plus this month's focus and your shot list</td></tr>
+    <tr><td>📅 Plan & create</td><td>The Content Calendar (your main workspace), Idea Bank and Campaigns</td></tr>
+    <tr><td>📊 Measure & improve</td><td>Monthly Performance with your month-end review</td></tr>
+    <tr><td>🧰 Tools</td><td>Your Tool Stack: what you use, what it costs, what it's for</td></tr>
+  </table>
+  <p>Each database has <strong>view tabs</strong> along its top edge (Pipeline, Calendar, Results…). A view is just a different lens on the same posts.</p>
+  <div class="folio"><span>Social Media Command Center</span><span>3</span></div>
+</section>
+
+<!-- 4. SETUP -->
+<section class="page">
+  <div class="eyebrow">Step 2 · 30 minutes</div>
+  <h2>Make it yours</h2>
+  <p class="lede">Do this once. After that, you only need the weekly rhythm on page 6.</p>
+
+  <ol class="steps">
+    <li><strong>Fill in the Brand Hub</strong>Replace every [bracketed] placeholder: positioning, audience, voice, words to use and avoid, colors (with HEX codes), fonts and asset links. This is the page you'll share with designers, VAs or clients.</li>
+    <li><strong>Rename your 5 content pillars</strong>The template ships with Educate, Show How, Behind the Scenes, Recommend and Engage. To rename: open the Content Calendar, click the <strong>Pillar</strong> column header → <strong>Edit property</strong> → click an option to rename it. Do the same in the Idea Bank so the names match, then update the pillar table in the Brand Hub.</li>
+    <li><strong>Trim the Platforms list</strong>Click the <strong>Platforms</strong> column header → Edit property, and delete the platforms you don't use.</li>
+    <li><strong>Add your hashtag sets and CTAs</strong>In the Content Playbook, replace the hashtag placeholders and add CTAs that point to your offer.</li>
+    <li><strong>Load the next 90 days of key dates</strong>Add holidays, sale events (11.11, Black Friday, 12.12), launches and awareness days to Campaigns & Key Dates.</li>
+    <li><strong>Set up your Tool Stack</strong>Keep the tools you use, delete the rest, and add costs so you know what social is costing you each month.</li>
+    <li><strong>Delete the EXAMPLE rows</strong>Each database has sample entries marked EXAMPLE so you can see how a finished post looks. Once you've looked through them, select them and press Delete.</li>
+    <li><strong>Brain-dump 20 ideas</strong>Open the Idea Bank and add 20 ideas as fast as you can. Don't filter. You'll sort them on Monday.</li>
+  </ol>
+
+  <div class="callout c-blue"><span class="ic">🔒</span><p><strong>Keep these names the same</strong> unless you know your way around Notion: Status, Pillar, Publish Date, Reach, Likes, Comments, Saves and Shares. The views, formulas and chart use them. Renaming them is fine; Notion updates references automatically. Deleting them is what breaks things.</p></div>
+  <div class="folio"><span>Social Media Command Center</span><span>4</span></div>
+</section>
+
+<!-- 5. CONTENT CALENDAR -->
+<section class="page">
+  <div class="eyebrow">The core</div>
+  <h2>The Content Calendar</h2>
+  <p class="lede" style="margin-bottom:6pt">One row is one post. Open any row to see every field, or work from the views below.</p>
+
+  <h3>Views</h3>
+  <table>
+    <tr><th>View</th><th>Use it to</th></tr>
+    <tr><td>All Posts</td><td>See everything in a table, sorted by publish date</td></tr>
+    <tr><td>Pipeline</td><td><strong>Your daily home.</strong> A board grouped by status. Drag cards right as work moves. Filter by pillar or platform from the bar at the top.</td></tr>
+    <tr><td>Calendar</td><td>See your month at a glance and spot gaps. Drag a post to a new day to reschedule it.</td></tr>
+    <tr><td>Needs Attention</td><td>Only posts that are blocked on assets or waiting for review</td></tr>
+    <tr><td>Results</td><td>Published posts with all metrics and engagement rate, newest first</td></tr>
+    <tr><td>Pillar Mix</td><td>A donut chart of posts per pillar, to check your content balance</td></tr>
+  </table>
+
+  <h3>Fields</h3>
+  <table>
+    <tr><th>Field</th><th>What to put there</th></tr>
+    <tr><td>Post</td><td>A short working title you'll recognise</td></tr>
+    <tr><td>Status · Publish Date</td><td>Where it is in the pipeline, and when it goes live</td></tr>
+    <tr><td>Pillar · Format · Platforms</td><td>Which pillar it serves, the format (carousel, Reel…) and where it's going</td></tr>
+    <tr><td>Campaign</td><td>Link it to a campaign or key date, if it supports one</td></tr>
+    <tr><td>Hook</td><td>The first line or on-screen text. Pull a formula from the Playbook.</td></tr>
+    <tr><td>Slide / Script Copy</td><td>Slide-by-slide text or the video script</td></tr>
+    <tr><td>Caption · CTA · Hashtags</td><td>Final caption, the one ask, and the hashtag set you'll paste</td></tr>
+    <tr><td>Visual Brief</td><td>What the graphic should look like, and any photo you need to shoot</td></tr>
+    <tr><td>Design Link · Assets</td><td>Your Canva/CapCut link, or upload the final files</td></tr>
+    <tr><td>QA Passed</td><td>Tick it after running the Pre-Publish QA checklist</td></tr>
+    <tr><td>Live Post Link</td><td>The URL once it's published</td></tr>
+    <tr><td>Reach → New Followers</td><td>Results, logged 7 days after posting</td></tr>
+    <tr><td>Engagements · Engagement Rate</td><td><strong>Calculated for you.</strong> Don't type in these.</td></tr>
+  </table>
+  <div class="folio"><span>Social Media Command Center</span><span>5</span></div>
+</section>
+
+<!-- 6. PIPELINE + RHYTHM -->
+<section class="page">
+  <div class="eyebrow">Your routine</div>
+  <h2>The pipeline & weekly rhythm</h2>
+  <p class="lede">Every post moves left to right through eight statuses. A few focused blocks a week keep it moving.</p>
+
+  <div class="pipeline">
+    <span class="tag t-gray">💡 Idea</span>
+    <span class="tag t-yellow">✍️ Drafting</span>
+    <span class="tag t-orange">🎨 Designing</span>
+    <span class="tag t-red">📸 Needs assets</span>
+    <span class="tag t-purple">👀 In review</span>
+    <span class="tag t-blue">✅ Ready</span>
+    <span class="tag t-brown">⏰ Scheduled</span>
+    <span class="tag t-green">🚀 Published</span>
+  </div>
+  <p><strong>Needs assets</strong> and <strong>In review</strong> are "blocked" statuses. Anything in them shows up in the <em>Needs Attention</em> view so it doesn't get forgotten.</p>
+
+  <h3>The weekly rhythm (about 4½ hours a week)</h3>
+  <table class="rhythm">
+    <tr><th>When</th><th>What to do</th></tr>
+    <tr><td>Monday · 30 min</td><td><strong>Plan.</strong> Shortlist ideas in the Idea Bank. Add the best ones to the calendar as 💡 Idea with a date, pillar and format. Check Campaigns for anything coming up.</td></tr>
+    <tr><td>Tuesday · 90 min</td><td><strong>Write.</strong> Batch hooks, slide copy and captions using the Playbook. Move posts to ✍️ Drafting, then 🎨 Designing.</td></tr>
+    <tr><td>Wednesday · 90 min</td><td><strong>Design.</strong> Create graphics and videos, paste the Design Link. Anything missing a photo goes to 📸 Needs assets and onto your shot list.</td></tr>
+    <tr><td>Thursday · 30 min</td><td><strong>QA and schedule.</strong> Run the QA checklist, tick QA Passed, load into your scheduler and move to ⏰ Scheduled.</td></tr>
+    <tr><td>Friday · 15 min</td><td><strong>Measure.</strong> For posts that went live 7 days ago, log Reach, Likes, Comments, Saves, Shares, Link Clicks and New Followers.</td></tr>
+    <tr><td>Month end · 30 min</td><td><strong>Review.</strong> Fill in the month in Monthly Performance and answer the five review questions.</td></tr>
+  </table>
+
+  <div class="callout c-green"><span class="ic">⏱️</span><p><strong>Short on time?</strong> Merge Tuesday–Thursday into one 3-hour batch day. The pipeline still works; you'll just move cards further in one sitting.</p></div>
+  <div class="folio"><span>Social Media Command Center</span><span>6</span></div>
+</section>
+
+<!-- 7. WRITING -->
+<section class="page">
+  <div class="eyebrow">Create faster</div>
+  <h2>Writing a post with the Playbook</h2>
+  <p class="lede">Open the Content Playbook side by side with your post. Here's the five-minute path from blank page to ready-to-design.</p>
+
+  <ol class="steps">
+    <li><strong>Pick a hook formula</strong>The Hook Bank has 20 formulas in five groups: curiosity, mistakes, results, how-to and POV. Fill in the brackets and write 3 versions. Keep the best one in the <em>Hook</em> field.</li>
+    <li><strong>Write the body</strong>Carousels: one idea per slide, 6–10 slides, big text. Reels: hook on screen in the first 2 seconds, then the value, then the CTA. Put it in <em>Slide / Script Copy</em>.</li>
+    <li><strong>Build the caption</strong>Use the six-part structure: Hook → Context → Value → Proof → CTA → Hashtags. There's a copy-paste template in the Playbook.</li>
+    <li><strong>Choose exactly one CTA</strong>Match it to the goal. Want reach? Ask for shares. Want saves? Ask for saves. Want leads? Use a comment keyword.</li>
+    <li><strong>Paste the hashtag set</strong>Use the core set plus the right topic set. Don't write hashtags from scratch every time.</li>
+    <li><strong>Write the Visual Brief</strong>One or two lines your future self (or a designer) can work from, including any photo to shoot.</li>
+  </ol>
+
+  <h3>Repurpose your winners</h3>
+  <p>When a post does well, run the <strong>Repurposing workflow</strong> in the Playbook: one strong idea becomes 3 short videos, 1 carousel, 2 quote graphics, a text post and a story poll. Add each piece to the Idea Bank with Source set to <em>Repurpose long-form</em>.</p>
+
+  <h3>Run QA before anything gets scheduled</h3>
+  <p>The 11-point <strong>Pre-Publish QA checklist</strong> catches the mistakes that cost reach: weak hook, two CTAs, missing captions on video, unreadable cover, broken links. Run it, then tick <em>QA Passed</em>.</p>
+  <div class="callout c-pink"><span class="ic">✦</span><p><strong>Pro tip:</strong> paste the Brand Hub's tone of voice and a few of your best captions into your AI writing tool before asking it for drafts. The output will sound much more like you.</p></div>
+  <div class="folio"><span>Social Media Command Center</span><span>7</span></div>
+</section>
+
+<!-- 8. RESULTS -->
+<section class="page">
+  <div class="eyebrow">Grow on purpose</div>
+  <h2>Tracking results</h2>
+  <p class="lede">Ten minutes of logging a week tells you exactly what to make more of.</p>
+
+  <h3>Per post (every Friday)</h3>
+  <p>Open the <strong>Results</strong> view. For each post published about 7 days ago, copy these numbers from the platform's insights: Reach, Likes, Comments, Saves, Shares, Link Clicks and New Followers. If a post went to several platforms, add them together or log your main platform only. Just be consistent.</p>
+  <p>The dashboard calculates the rest:</p>
+  <div class="formula">Engagements = Likes + Comments + Saves + Shares<br>Engagement Rate (%) = Engagements ÷ Reach × 100</div>
+  <p style="margin-bottom:0">Sort the Results view by Engagement Rate or Saves to see your best posts instantly.</p>
+
+  <h3>Per month (last working day)</h3>
+  <ol class="steps">
+    <li><strong>Fill in the month's row</strong>In Monthly Performance, add total posts, reach, engagements, saves, shares, clicks, new followers, total followers and leads/DMs. Engagement rate is calculated.</li>
+    <li><strong>Link your top post</strong>Use the <em>Top Post</em> field to link the month's best performer from the calendar.</li>
+    <li><strong>Answer the five review questions</strong>Open the month's row. Each one has the questions ready: what worked, which pillar lagged, what the audience asked for, what to stop, and the one experiment for next month.</li>
+    <li><strong>Check the Pillar Mix chart</strong>If one pillar is way over or under your target %, adjust next month's plan.</li>
+  </ol>
+
+  <h3>Benchmarks</h3>
+  <table>
+    <tr><th>Metric</th><th>Healthy</th><th>Great</th></tr>
+    <tr><td>Engagement rate (by reach)</td><td>3–5%</td><td>6%+</td></tr>
+    <tr><td>Saves per 1,000 reach</td><td>10–20</td><td>30+</td></tr>
+    <tr><td>Shares per 1,000 reach</td><td>5–10</td><td>15+</td></tr>
+    <tr><td>Monthly follower growth</td><td>3–5%</td><td>10%+</td></tr>
+  </table>
+  <p style="font-size:8.5pt;color:var(--ink-soft);margin-bottom:0">Benchmarks vary by niche and account size. Your own month-over-month trend matters most.</p>
+  <div class="folio"><span>Social Media Command Center</span><span>8</span></div>
+</section>
+
+<!-- 9. OTHER DATABASES + TIPS -->
+<section class="page">
+  <div class="eyebrow">The supporting cast</div>
+  <h2>Ideas, campaigns & tools</h2>
+
+  <div class="grid-2" style="margin-top:12pt">
+    <div class="card">
+      <h4>💡 Idea Bank</h4>
+      <p>Add ideas the moment you have them, even from your phone. Tag the <strong>Source</strong> (comment, client question, trend…) so you learn where your best ideas come from. On Monday, move the best to <em>Shortlisted</em>, add them to the calendar, then mark them <em>Moved to calendar</em>.</p>
+    </div>
+    <div class="card">
+      <h4>🎯 Campaigns & Key Dates</h4>
+      <p>Add each campaign with a date range, goal and offer. The <strong>Timeline</strong> view shows what's coming. When you create a post that supports a campaign, set its <em>Campaign</em> field; open the campaign to see all linked posts.</p>
+    </div>
+    <div class="card">
+      <h4>🧰 Tool Stack</h4>
+      <p>Track every tool, what plan you're on and what it costs. Store which email an account is under, <strong>never passwords</strong>. Review it quarterly and cancel what you don't use.</p>
+    </div>
+    <div class="card">
+      <h4>📸 Shot list</h4>
+      <p>The yellow box at the top of the dashboard is your weekly shot list. When a post is <em>Needs assets</em>, add the photo or clip here so you can shoot everything in one session.</p>
+    </div>
+  </div>
+
+  <h3>Power-user tips</h3>
+  <ul>
+    <li><strong>Mobile capture:</strong> add the Idea Bank to Favorites in the Notion app and log ideas in seconds.</li>
+    <li><strong>Hide fields you don't use:</strong> open any post → ••• → <em>Customize page</em> and hide empty or unused properties.</li>
+    <li><strong>Post templates:</strong> in the Content Calendar, click the arrow next to <em>New</em> → <em>New template</em> to save a pre-filled post (e.g. "Weekly carousel") with your usual hashtags and CTA.</li>
+    <li><strong>Client approvals:</strong> share a client's copy with them as "Can comment". They comment on the post, you move it out of 👀 In review.</li>
+    <li><strong>Automate logging:</strong> with Make or Zapier, you can create a calendar row automatically when a post is published in your scheduler.</li>
+  </ul>
+  <div class="folio"><span>Social Media Command Center</span><span>9</span></div>
+</section>
+
+<!-- 10. FAQ + SUPPORT -->
+<section class="page closing">
+  <div class="eyebrow">Help</div>
+  <h2>FAQ & troubleshooting</h2>
+  <div class="faq">
+    <h4>Do I need a paid Notion plan?</h4>
+    <p>No. Everything works on the free plan. Notion's free plan has a file-upload size limit, so for big videos paste a Drive or Canva link instead of uploading.</p>
+    <h4>I deleted a view, property or row by accident.</h4>
+    <p>Press Ctrl/Cmd + Z straight away. For deleted pages, check <em>Trash</em> in the sidebar. You can also re-duplicate the original template any time from your link.</p>
+    <h4>The Engagement Rate shows 0.</h4>
+    <p>It needs a Reach number above zero. Fill in Reach and it'll calculate.</p>
+    <h4>A post isn't showing on the Calendar view.</h4>
+    <p>It needs a Publish Date. Undated posts still appear in Pipeline and All Posts.</p>
+    <h4>The Pillar Mix chart looks wrong after I renamed pillars.</h4>
+    <p>Make sure you renamed the existing options rather than creating new ones. Old posts keep the old option until you change them.</p>
+    <h4>Can I use this for more than one brand or client?</h4>
+    <p>Yes. Duplicate the template once per brand. Your licence covers your own brands and the clients you manage.</p>
+  </div>
+
+  <div class="callout c-pink" style="margin-top:18pt"><span class="ic">💌</span><div>
+    <p><strong>Need help?</strong> Reply to your purchase email and we'll get back to you within 2 business days.</p>
+    <p style="font-size:9pt;color:var(--ink-soft)"><strong>Licence:</strong> for personal use and for managing your own clients' accounts. Please don't resell, share or redistribute the template or this guide.</p>
+  </div></div>
+
+  <p style="margin-top:22pt;font-family:'Fraunces',Georgia,serif;font-size:16pt">Now go make something worth saving. <span class="sparkle">✦</span></p>
+  <p style="color:var(--ink-soft)">— Anchor Growth Co.</p>
+  <div class="folio"><span>Social Media Command Center</span><span>10</span></div>
+</section>
+
+</body>
+</html>
