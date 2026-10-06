@@ -30,7 +30,8 @@ html = html
   .replace(
     "__TEMPLATE_BUTTON__",
     templateUrl
-      ? `<p style="margin:4pt 0 14pt 30pt"><a class="button" href="${escape(templateUrl)}">Duplicate the template →</a></p>`
+      ? `<p style="margin:4pt 0 14pt 30pt"><a class="button" href="${escape(templateUrl)}">Duplicate the template →</a></p>` +
+        `<p style="margin:-6pt 0 14pt 30pt;font-size:8.5pt;color:var(--ink-soft)">Or copy this link: <a href="${escape(templateUrl)}">${escape(templateUrl)}</a></p>`
       : ""
   );
 
