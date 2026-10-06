@@ -12,7 +12,7 @@ What buyers receive after purchasing the ₱149 template.
 
 ```sh
 npm i -D playwright        # once
-TEMPLATE_URL="https://www.notion.so/SMM-Dashboard-3f0edf4e3e698174b24ed6ed03940d88" node build-pdf.mjs
+TEMPLATE_URL="https://nine-wok-abe.notion.site/SMM-Dashboard-3f0edf4e3e698174b24ed6ed03940d88" node build-pdf.mjs
 ```
 
 `TEMPLATE_URL` is optional. When it's set, the guide gets a clickable "Duplicate the template" button. When it's not, the guide points buyers to the link in their purchase email.
